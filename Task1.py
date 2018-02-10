@@ -43,5 +43,4 @@ print(_phone_number_set)
 
 # 添加通话记录号码
 add_phone_numbers(calls)
-print(_phone_number_set)
 print("There are {} different telephone numbers in the records.".format(str(len(_phone_number_set))))

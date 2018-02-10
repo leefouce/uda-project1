@@ -3,6 +3,7 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
+
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
@@ -10,7 +11,6 @@ with open('texts.csv', 'r') as f:
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-
 
 """
 任务0:
@@ -24,5 +24,9 @@ first_text = texts[0];
 print("First record of texts, {} texts {} at time {}".format(first_text[0], first_text[1], first_text[2]))
 # print the last record of CALLS
 last_call = calls[-1]
-print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(last_call[0], last_call[1], last_call[2], last_call[3]))
-
+print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(
+    last_call[0],
+    last_call[1],
+    last_call[2],
+    last_call[3]
+))

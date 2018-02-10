@@ -46,8 +46,9 @@ def print_telemarketer_list(lists):
     Args:
         lists: list 待输出列表
     """
+    print("These numbers could be telemarketers:")
     for item in lists:
-        print("These numbers could be telemarketers: {}".format(item))
+        print(item)
 
 
 # 通话记录主叫集合

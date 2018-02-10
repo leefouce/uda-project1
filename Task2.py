@@ -38,19 +38,19 @@ def sum_number_duration_time(num, time):
     else:
         _phone_number_dicts[num] = int(time)
 
-
-def longest_duration_time():
-    """
-    计算最长通话时间并返回对应的字典键，如果出现多个最长记录取第一个
-    """
-    global _phone_number_dicts
-    longest_time = 0
-    longest_time_key = None
-    for key in _phone_number_dicts:
-        if _phone_number_dicts[key] > longest_time:
-            longest_time = _phone_number_dicts[key]
-            longest_time_key = key
-    return longest_time_key
+# 该函数可用内置max函数替代
+# def longest_duration_time():
+#     """
+#     计算最长通话时间并返回对应的字典键，如果出现多个最长记录取第一个
+#     """
+#     global _phone_number_dicts
+#     longest_time = 0
+#     longest_time_key = None
+#     for key in _phone_number_dicts:
+#         if _phone_number_dicts[key] > longest_time:
+#             longest_time = _phone_number_dicts[key]
+#             longest_time_key = key
+#     return longest_time_key
 
 
 # 遍历通话记录计算每个电话的通话时间
@@ -63,7 +63,11 @@ for call in calls:
     # 被叫通话时间
     sum_number_duration_time(receiving, duration_time)
 # 获取最长通话时间对应的字典键与值
-longest_time_key = longest_duration_time()
+# longest_time_key = longest_duration_time()
+longest_time_key = max(_phone_number_dicts, key=_phone_number_dicts.get)
 longest_time = _phone_number_dicts[longest_time_key]
-print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(longest_time_key,
-                                                                                          str(longest_time)))
+
+print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(
+    longest_time_key,
+    str(longest_time)
+))

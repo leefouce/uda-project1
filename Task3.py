@@ -41,7 +41,7 @@ to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
 # 被叫代号列表（元素不重复）
-_receiving_unique_code_list = []
+_receiving_code_set = set()
 # 被叫代号列表（元素重复）
 _receiving_code_list = []
 
@@ -65,31 +65,29 @@ def switch_receiving_code(num):
         return None
 
 
-def save_receiving_code(num, repeat):
+def save_receiving_code(num):
     """
     存储被叫电话号码的代号
     Args:
         num: string 被叫电话号码
-        repeat: bool 是否重复
     """
     global _receiving_unique_code_list
     global _receiving_code_list
     matched_code = switch_receiving_code(num)
-    if repeat:
-        if matched_code:
-            _receiving_code_list.append(matched_code)
-    else:
-        if matched_code and matched_code not in _receiving_unique_code_list:
-            _receiving_unique_code_list.append(matched_code)
+    if matched_code:
+        _receiving_code_list.append(matched_code)
+        _receiving_code_set.add(matched_code)
 
 
-def print_receving_code():
+def print_receving_code(lists):
     """
     格式化输出
+    Args:
+        lists: list 待输出列表
     """
-    global _receiving_unique_code_list
-    for item in _receiving_unique_code_list:
-        print("The numbers called by people in Bangalore have codes:{}".format(item))
+    print("The numbers called by people in Bangalore have codes:")
+    for item in lists:
+        print(item)
 
 
 # 班加罗尔的区号
@@ -97,19 +95,15 @@ code = '(080)'
 # part 1
 for call in calls:
     if code in call[0]:
-        # 存储有重复的代号
-        save_receiving_code(call[1], True)
-        # 存储无重复的代号
-        save_receiving_code(call[1], False)
+        save_receiving_code(call[1])
 
-# 按字典排序
-_receiving_unique_code_list.sort()
-# 格式化输出
-print_receving_code()
+
+# 按字典排序 & 格式化输出
+print_receving_code(sorted(_receiving_code_set))
 
 # part 2
 # 被叫 为班加罗尔 的数量
 bangalore_receiving_code = _receiving_code_list.count(code)
 proportion_bangalore = round(bangalore_receiving_code / len(_receiving_code_list), 2)
-print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
-    str(proportion_bangalore)))
+print("{:.2%} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
+    proportion_bangalore))
