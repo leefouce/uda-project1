@@ -104,6 +104,8 @@ print_receving_code(sorted(_receiving_code_set))
 # part 2
 # 被叫 为班加罗尔 的数量
 bangalore_receiving_code = _receiving_code_list.count(code)
-proportion_bangalore = round(bangalore_receiving_code / len(_receiving_code_list), 2)
+# 不需要使用round
+# proportion_bangalore = round(bangalore_receiving_code / len(_receiving_code_list), 2)
+proportion_bangalore = bangalore_receiving_code / len(_receiving_code_list)
 print("{:.2%} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
     proportion_bangalore))

@@ -39,7 +39,6 @@ def add_phone_numbers(lists):
 
 # 添加短信号码
 add_phone_numbers(texts)
-print(_phone_number_set)
 
 # 添加通话记录号码
 add_phone_numbers(calls)
